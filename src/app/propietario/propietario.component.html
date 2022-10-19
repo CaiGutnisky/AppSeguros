@@ -1,0 +1,33 @@
+<h2>Listado de propietarios</h2>
+<table mat-table [dataSource]="propietarios" class="mat-elevation-z8" style="width:
+    100%;">
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let propietario"> {{propietario.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="documento">
+        <th mat-header-cell *matHeaderCellDef>Documento</th>
+        <td mat-cell *matCellDef="let propietario"> {{propietario.documento}} </td>
+    </ng-container>
+    <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let propietario">
+            <a mat-icon-button [routerLink]="['/propietarios/editar', propietario.id]">
+                <mat-icon color="primary">edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let propietario">
+            <button (click)="eliminarPropietario(propietario)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['nombre', 'documento', 'editar',
+        'eliminar']"></tr>
+    <tr mat-row *matRowDef="let fila; columns: ['nombre', 'documento',
+        'editar', 'eliminar'];"></tr>
+</table>
